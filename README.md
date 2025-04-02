@@ -1,0 +1,42 @@
+# Notion MCP
+
+This project implements an [MCP server](https://spec.modelcontextprotocol.io/) for the Notion API.
+
+### Installation
+
+Add the following to your `.cursor/mcp.json` or `claude_desktop_config.json` (MacOS: `~/Library/Application Support/Claude/claude_desktop_config.json`)
+
+Don't forget to modify your the bearer token.
+
+```javascript
+{
+  "mcpServers": {
+    "notionApi": {
+      "command": "npx",
+      "args": ["-y", "openapi-mcp-server@1.1.0", "/path-or-url/to-openapi-spec/notionApi.json"],
+      "env": {
+        "OPENAPI_MCP_HEADERS": "{\"Authorization\": \"Bearer ntn_****\", \"Notion-Version\": \"2022-06-28\" }"
+      }
+    }
+  }
+}
+```
+
+### Examples
+
+1. Using the following command
+```
+Comment "Hello MCP" on page "Getting started"
+```
+
+AI will correctly plan two API calls, v1/search and v1/comments, to achieve the task
+
+2. Similarly, the following instruction will result in a new page named "Notion MCP" added to parent page "Development"
+```
+Add a page titled "Notion MCP" to page "Development"
+```
+
+3. You may also reference content ID directly
+```
+Get the content of page 1a6b35e6e67f802fa7e1d27686f017f2
+```
