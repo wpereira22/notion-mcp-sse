@@ -1,2 +1,7 @@
-.DS_Store
+node_modules/
+build/
+bin/
+
 .cursor
+
+.DS_Store

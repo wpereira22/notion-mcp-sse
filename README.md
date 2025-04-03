@@ -1,6 +1,6 @@
 # Notion MCP
 
-This project implements an [MCP server](https://spec.modelcontextprotocol.io/) for the Notion API.
+This project implements an [MCP server](https://spec.modelcontextprotocol.io/) for the Notion API. 
 
 ### Installation
 
@@ -13,7 +13,7 @@ Don't forget to modify your the bearer token.
   "mcpServers": {
     "notionApi": {
       "command": "npx",
-      "args": ["-y", "openapi-mcp-server@1.1.0", "/path-or-url/to-openapi-spec/notionApi.json"],
+      "args": ["-y", "@notionhq/notion-mcp-server"],
       "env": {
         "OPENAPI_MCP_HEADERS": "{\"Authorization\": \"Bearer ntn_****\", \"Notion-Version\": \"2022-06-28\" }"
       }
@@ -39,4 +39,18 @@ Add a page titled "Notion MCP" to page "Development"
 3. You may also reference content ID directly
 ```
 Get the content of page 1a6b35e6e67f802fa7e1d27686f017f2
+```
+
+### Development
+
+Build
+
+```
+npm run build
+```
+
+Execute
+
+```
+npx @notionhq/notion-mcp-server
 ```
