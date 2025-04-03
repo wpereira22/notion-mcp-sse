@@ -6,7 +6,6 @@ import { OpenAPIV3 } from 'openapi-types'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import OpenAPISchemaValidator from 'openapi-schema-validator'
 import axios from 'axios'
-import yaml from 'js-yaml'
 
 import { MCPProxy } from '../src/openapi-mcp-server/mcp/proxy'
 
