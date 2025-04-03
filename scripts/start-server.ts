@@ -5,7 +5,6 @@ import { fileURLToPath } from 'url'
 import { OpenAPIV3 } from 'openapi-types'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import OpenAPISchemaValidator from 'openapi-schema-validator'
-import axios from 'axios'
 
 import { MCPProxy } from '../src/openapi-mcp-server/mcp/proxy'
 
@@ -29,6 +28,12 @@ export async function loadOpenApiSpec(specPath: string): Promise<OpenAPIV3.Docum
   // Parse and validate the spec
   try {
     const parsed = JSON.parse(rawSpec)
+    const baseUrl = process.env.BASE_URL
+
+    if (baseUrl) {
+      parsed.servers[0].url = baseUrl
+    }
+
     return parsed as OpenAPIV3.Document
   } catch (error) {
     if (error instanceof ValidationError) {
@@ -46,7 +51,7 @@ export async function main(args: string[] = process.argv.slice(2)) {
   const specPath = path.resolve(directory, '../scripts/notion-openapi.json')
   const openApiSpec = await loadOpenApiSpec(specPath)
   const proxy = new MCPProxy('OpenAPI Tools', openApiSpec)
-  console.log(openApiSpec)
+
   return proxy.connect(new StdioServerTransport())
 }
 
