@@ -1,0 +1,19 @@
+{
+  "name": "notion-mcp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "supergateway --stdio \"npx -y @notionhq/notion-mcp-server\" --outputTransport sse --port 8080 --cors"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@notionhq/notion-mcp-server": "^1.7.0"
+  },
+  "devDependencies": {
+    "supergateway": "^2.7.0"
+  }
+}
