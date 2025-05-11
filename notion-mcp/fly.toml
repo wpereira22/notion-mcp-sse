@@ -1,0 +1,33 @@
+# fly.toml app configuration file generated for notion-mcp on 2025-05-11T03:57:27-04:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'notion-mcp'
+primary_region = 'ord'
+
+[build]
+  dockerfile = "Dockerfile"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+  [[http_service.checks]]
+    grace_period = "10s"
+    interval = "15s"
+    method = "get"
+    path = "/sse"
+    port = 8080
+    protocol = "http"
+    timeout = "5s"
+    tls_skip_verify = true
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
